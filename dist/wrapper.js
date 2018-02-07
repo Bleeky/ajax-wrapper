@@ -167,7 +167,7 @@ var AjaxWrapper = function () {
                       return _context.abrupt('return', null);
 
                     case 10:
-                      _context.t0 = _this3.def.routes[name].responseType;
+                      _context.t0 = _this3.apiDefs[key].responseType;
                       _context.next = _context.t0 === 'text/plain' ? 13 : _context.t0 === 'blob' ? 14 : 15;
                       break;
 
