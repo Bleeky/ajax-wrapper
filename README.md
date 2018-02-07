@@ -1,12 +1,14 @@
-### rxjs-ajax-wrapper
+### ajax-wrapper
 
-[![Version](https://img.shields.io/npm/v/rxjs-ajax-wrapper.svg)](https://www.npmjs.org/package/rxjs-ajax-wrapper)
+A simple clone of [rxjs-ajax-wrapper](https://npmjs.org/package/rxjs-ajax-wrapper), using the fetch API.
+
+[![Version](https://img.shields.io/npm/v/ajax-wrapper.svg)](https://www.npmjs.org/package/ajax-wrapper)
 [![npm download][download-image]][download-url]
 
-[download-image]: https://img.shields.io/npm/dm/rxjs-ajax-wrapper.svg?style=flat-square
-[download-url]: https://npmjs.org/package/rxjs-ajax-wrapper
+[download-image]: https://img.shields.io/npm/dm/ajax-wrapper.svg?style=flat-square
+[download-url]: https://npmjs.org/package/ajax-wrapper
 
-Simple to use and simple to setup wrapper for rxjs. Allows you to define your distant resources api and call them on the fly.
+Simple to use and simple to setup wrapper for fetch. Allows you to define your distant resources api and call them on the fly.
 
 ## How to use
 
@@ -32,14 +34,15 @@ const apiDefs = {
 };
 ```
 
-You can check all the available request params [here](https://github.com/Reactive-Extensions/RxJS-DOM/blob/master/doc/operators/ajax.md)
+You can check all the available request params [here](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+The returned data in the Promise `resolve` is already formatted following the responseType of the request definition.
 
 Step 2: Initialize the wrapper
 
 ```javascript
-import { RxjsWrapper } from 'rxjs-ajax-wrapper';
+import { AjaxWrapper } from 'ajax-wrapper';
 
-const api = new RxjsWrapper(apiDefs);
+const api = new AjaxWrapper(apiDefs);
 ```
 
 Step 3: Call the routes
@@ -50,8 +53,8 @@ api.routes.getAllFilms()
 
 ## Return value
 
-Return an `Observable`.
-Checkout [https://github.com/Reactive-Extensions/RxJS-DOM/blob/master/doc/operators/ajax.md](https://github.com/Reactive-Extensions/RxJS-DOM/blob/master/doc/operators/ajax.md) for more details.
+Return a `Promise`.
+Checkout [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for more details.
 
 ## Options
 
