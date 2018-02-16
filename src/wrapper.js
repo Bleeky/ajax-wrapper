@@ -37,6 +37,7 @@ class AjaxWrapper {
       ...def,
       responseType: def.responseType ? def.responseType : 'json',
       body: req.body,
+      ...req,
       ...middlewaresArgs,
     };
   }
@@ -57,7 +58,7 @@ class AjaxWrapper {
     let routes = {};
     Object.keys(this.apiDefs).forEach((key) => {
       routes = { ...routes,
-        [`${key}`]: (reqSettings = { params: {}, body: null, query: {} }) => fetch(this.apiDefs[key].url, this.defBuilder(this.apiDefs[key], reqSettings)).then(async (response) => {
+        [`${key}`]: (reqSettings = { params: {}, body: null, query: {} }) => fetch(this.buildUrl(this.apiDefs[key].url, reqSettings.params, reqSettings.query), this.defBuilder(this.apiDefs[key], reqSettings)).then(async (response) => {
           if (!response) {
             throw new Error('No response');
           }
