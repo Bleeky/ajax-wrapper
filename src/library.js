@@ -1,13 +1,13 @@
 const combineWrappers = (wrappers,
-  { reqMiddlewares = null, reqMiddlewareParams = null },
-  { errMiddlewares = null, errMiddlewaresParams = null }) => {
+  reqMdw = { reqMdw: null, reqMdwParams: null },
+  errMdw = { errMdw: null, errMdwParams: null }) => {
   let wrapped = {};
   Object.keys(wrappers).forEach((key) => {
-    if (reqMiddlewares) {
-      wrappers[key].addRequestMiddlewares(reqMiddlewares, reqMiddlewareParams);
+    if (reqMdw.reqMiddlewares) {
+      wrappers[key].addRequestMiddlewares(reqMdw.reqMiddlewares, reqMdw.reqMdwParams);
     }
-    if (errMiddlewares) {
-      wrappers[key].addErrorMiddlewares(errMiddlewares, errMiddlewaresParams);
+    if (errMdw.errMdw) {
+      wrappers[key].addErrorMiddlewares(errMdw.errMdw, errMdw.errMdwParams);
     }
     wrapped = { [key]: wrappers[key].routes, ...wrapped };
   });

@@ -14,23 +14,17 @@ var _extends4 = _interopRequireDefault(_extends3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var combineWrappers = function combineWrappers(wrappers, _ref, _ref2) {
-  var _ref$reqMiddlewares = _ref.reqMiddlewares,
-      reqMiddlewares = _ref$reqMiddlewares === undefined ? null : _ref$reqMiddlewares,
-      _ref$reqMiddlewarePar = _ref.reqMiddlewareParams,
-      reqMiddlewareParams = _ref$reqMiddlewarePar === undefined ? null : _ref$reqMiddlewarePar;
-  var _ref2$errMiddlewares = _ref2.errMiddlewares,
-      errMiddlewares = _ref2$errMiddlewares === undefined ? null : _ref2$errMiddlewares,
-      _ref2$errMiddlewaresP = _ref2.errMiddlewaresParams,
-      errMiddlewaresParams = _ref2$errMiddlewaresP === undefined ? null : _ref2$errMiddlewaresP;
+var combineWrappers = function combineWrappers(wrappers) {
+  var reqMdw = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { reqMdw: null, reqMdwParams: null };
+  var errMdw = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : { errMdw: null, errMdwParams: null };
 
   var wrapped = {};
   Object.keys(wrappers).forEach(function (key) {
-    if (reqMiddlewares) {
-      wrappers[key].addRequestMiddlewares(reqMiddlewares, reqMiddlewareParams);
+    if (reqMdw.reqMiddlewares) {
+      wrappers[key].addRequestMiddlewares(reqMdw.reqMiddlewares, reqMdw.reqMdwParams);
     }
-    if (errMiddlewares) {
-      wrappers[key].addErrorMiddlewares(errMiddlewares, errMiddlewaresParams);
+    if (errMdw.errMdw) {
+      wrappers[key].addErrorMiddlewares(errMdw.errMdw, errMdw.errMdwParams);
     }
     wrapped = (0, _extends4.default)((0, _defineProperty3.default)({}, key, wrappers[key].routes), wrapped);
   });
