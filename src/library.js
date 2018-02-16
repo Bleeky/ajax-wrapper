@@ -3,7 +3,7 @@ const combineWrappers = (wrappers,
   errMdw = { errMdw: null, errMdwParams: null }) => {
   let wrapped = {};
   Object.keys(wrappers).forEach((key) => {
-    if (reqMdw.reqMiddlewares) {
+    if (reqMdw.reqMdw) {
       wrappers[key].addRequestMiddlewares(reqMdw.reqMdw, reqMdw.reqMdwParams);
     }
     if (errMdw.errMdw) {
