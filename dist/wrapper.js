@@ -83,7 +83,7 @@ var AjaxWrapper = function () {
       return (0, _extends4.default)({}, def, {
         responseType: def.responseType ? def.responseType : 'json',
         body: req.body
-      }, middlewaresArgs);
+      }, req, middlewaresArgs);
     }
   }, {
     key: 'addRequestMiddlewares',
@@ -131,19 +131,16 @@ var AjaxWrapper = function () {
                 while (1) {
                   switch (_context.prev = _context.next) {
                     case 0:
-                      console.warn(_this3.buildUrl(_this3.apiDefs[key].url, reqSettings.params, reqSettings.query));
-                      console.warn(_this3.defBuilder(_this3.apiDefs[key], reqSettings));
-
                       if (response) {
-                        _context.next = 4;
+                        _context.next = 2;
                         break;
                       }
 
                       throw new Error('No response');
 
-                    case 4:
+                    case 2:
                       if (response.ok) {
-                        _context.next = 10;
+                        _context.next = 8;
                         break;
                       }
 
@@ -154,36 +151,36 @@ var AjaxWrapper = function () {
                           middleware.handler(response);
                         }
                       });
-                      _context.next = 8;
+                      _context.next = 6;
                       return response.json();
 
-                    case 8:
+                    case 6:
                       data = _context.sent;
                       throw new Error({ message: 'Request error: status is ' + response.status + ' (' + response.statusText + ')', status: response.status, data: data.data });
 
-                    case 10:
+                    case 8:
                       if (!(response.status === 204 || _this3.apiDefs[key].responseType === 'no-content')) {
-                        _context.next = 12;
+                        _context.next = 10;
                         break;
                       }
 
                       return _context.abrupt('return', null);
 
-                    case 12:
+                    case 10:
                       _context.t0 = _this3.apiDefs[key].responseType;
-                      _context.next = _context.t0 === 'text/plain' ? 15 : _context.t0 === 'blob' ? 16 : 17;
+                      _context.next = _context.t0 === 'text/plain' ? 13 : _context.t0 === 'blob' ? 14 : 15;
                       break;
 
-                    case 15:
+                    case 13:
                       return _context.abrupt('return', response.text());
 
-                    case 16:
+                    case 14:
                       return _context.abrupt('return', response.blob());
 
-                    case 17:
+                    case 15:
                       return _context.abrupt('return', response.json());
 
-                    case 18:
+                    case 16:
                     case 'end':
                       return _context.stop();
                   }
