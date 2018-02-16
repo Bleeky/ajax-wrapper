@@ -69,7 +69,7 @@ class AjaxWrapper {
               }
             });
             const data = await response.json();
-            throw new Error({ message: `Request error: status is ${response.status} (${response.statusText})`, status: response.status, data: data.data });
+            throw { message: `Request error: status is ${response.status} (${response.statusText})`, status: response.status, data: data.data };
           }
           if (response.status === 204 || this.apiDefs[key].responseType === 'no-content') {
             return null;
