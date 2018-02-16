@@ -4,7 +4,7 @@ const combineWrappers = (wrappers,
   let wrapped = {};
   Object.keys(wrappers).forEach((key) => {
     if (reqMdw.reqMiddlewares) {
-      wrappers[key].addRequestMiddlewares(reqMdw.reqMiddlewares, reqMdw.reqMdwParams);
+      wrappers[key].addRequestMiddlewares(reqMdw.reqMdw, reqMdw.reqMdwParams);
     }
     if (errMdw.errMdw) {
       wrappers[key].addErrorMiddlewares(errMdw.errMdw, errMdw.errMdwParams);

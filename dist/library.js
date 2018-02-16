@@ -21,7 +21,7 @@ var combineWrappers = function combineWrappers(wrappers) {
   var wrapped = {};
   Object.keys(wrappers).forEach(function (key) {
     if (reqMdw.reqMiddlewares) {
-      wrappers[key].addRequestMiddlewares(reqMdw.reqMiddlewares, reqMdw.reqMdwParams);
+      wrappers[key].addRequestMiddlewares(reqMdw.reqMdw, reqMdw.reqMdwParams);
     }
     if (errMdw.errMdw) {
       wrappers[key].addErrorMiddlewares(errMdw.errMdw, errMdw.errMdwParams);
