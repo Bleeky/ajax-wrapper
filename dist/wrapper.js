@@ -84,13 +84,14 @@ var AjaxWrapper = function () {
           middlewaresArgs = (0, _extends4.default)({}, middlewaresArgs, middleware.handler());
         }
       });
-      var mergeReqSettings = (0, _deepmerge2.default)({ middlewaresArgs: middlewaresArgs, req: req });
-      mergeReqSettings = (0, _deepmerge2.default)({
+      var mergedReqSettings = (0, _deepmerge2.default)({ middlewaresArgs: middlewaresArgs, req: req });
+      mergedReqSettings = (0, _deepmerge2.default)({
         method: def.method,
         responseType: def.responseType ? def.responseType : 'json',
         headers: { 'Content-Type': def.contentType ? def.responseType : 'application/json' }
-      }, mergeReqSettings);
-      return mergeReqSettings;
+      }, mergedReqSettings);
+      console.warn(mergedReqSettings);
+      return mergedReqSettings;
     }
   }, {
     key: 'addRequestMiddlewares',
