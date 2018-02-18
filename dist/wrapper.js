@@ -90,7 +90,6 @@ var AjaxWrapper = function () {
         responseType: def.responseType ? def.responseType : 'json',
         headers: { 'Content-Type': def.contentType ? def.responseType : 'application/json' }
       }, mergedReqSettings);
-      console.warn(mergedReqSettings);
       return mergedReqSettings;
     }
   }, {
