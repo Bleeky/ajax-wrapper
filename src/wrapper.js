@@ -1,3 +1,5 @@
+import deepmerge from 'deepmerge';
+
 class AjaxWrapper {
   constructor(apiDefs) {
     this.apiDefs = apiDefs;
@@ -33,13 +35,13 @@ class AjaxWrapper {
         middlewaresArgs = { ...middlewaresArgs, ...middleware.handler() };
       }
     });
-    return {
-      ...def,
+    let mergeReqSettings = deepmerge({ middlewaresArgs, req });
+    mergeReqSettings = deepmerge({
+      method: def.method,
       responseType: def.responseType ? def.responseType : 'json',
-      body: req.body,
-      ...req,
-      ...middlewaresArgs,
-    };
+      headers: { 'Content-Type': def.contentType ? def.responseType : 'application/json' },
+    }, mergeReqSettings);
+    return mergeReqSettings;
   }
 
   addRequestMiddlewares(middlewares, ...params) {

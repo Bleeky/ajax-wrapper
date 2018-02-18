@@ -32,6 +32,10 @@ var _createClass2 = require('babel-runtime/helpers/createClass');
 
 var _createClass3 = _interopRequireDefault(_createClass2);
 
+var _deepmerge = require('deepmerge');
+
+var _deepmerge2 = _interopRequireDefault(_deepmerge);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AjaxWrapper = function () {
@@ -80,10 +84,13 @@ var AjaxWrapper = function () {
           middlewaresArgs = (0, _extends4.default)({}, middlewaresArgs, middleware.handler());
         }
       });
-      return (0, _extends4.default)({}, def, {
+      var mergeReqSettings = (0, _deepmerge2.default)({ middlewaresArgs: middlewaresArgs, req: req });
+      mergeReqSettings = (0, _deepmerge2.default)({
+        method: def.method,
         responseType: def.responseType ? def.responseType : 'json',
-        body: req.body
-      }, req, middlewaresArgs);
+        headers: { 'Content-Type': def.contentType ? def.responseType : 'application/json' }
+      }, mergeReqSettings);
+      return mergeReqSettings;
     }
   }, {
     key: 'addRequestMiddlewares',
