@@ -59,13 +59,16 @@ var AjaxWrapper = function () {
     value: function buildUrl(url) {
       var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
       var query = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+
       // eslint-disable-line
       var finalUrl = url;
       Object.keys(params).forEach(function (param) {
         finalUrl = finalUrl.replace(':' + param, params[param]);
       });
       if (query.constructor === Object && Object.keys(query).length > 0) {
-        finalUrl = finalUrl.concat('?', Object.keys(query).map(function (key) {
+        finalUrl = finalUrl.concat('?', Object.keys(query).filter(function (key) {
+          return query[key];
+        }).map(function (key) {
           return encodeURIComponent(key) + '=' + encodeURIComponent(query[key]);
         }).join('&'));
       } else if (query.constructor === String) {
@@ -163,7 +166,11 @@ var AjaxWrapper = function () {
 
                     case 6:
                       data = _context.sent;
-                      throw { message: 'Request error: status is ' + response.status + ' (' + response.statusText + ')', status: response.status, data: data.data };
+                      throw {
+                        message: 'Request error: status is ' + response.status + ' (' + response.statusText + ')',
+                        status: response.status,
+                        data: data.data
+                      };
 
                     case 8:
                       if (!(response.status === 204 || _this3.apiDefs[key].responseType === 'no-content')) {
