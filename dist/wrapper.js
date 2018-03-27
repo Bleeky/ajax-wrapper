@@ -88,10 +88,14 @@ var AjaxWrapper = function () {
         }
       });
       var mergedReqSettings = (0, _deepmerge2.default)(middlewaresArgs, req);
+      if (def.contentType) {
+        mergedReqSettings = (0, _deepmerge2.default)({
+          headers: { 'Content-Type': def.contentType }
+        }, mergedReqSettings);
+      }
       mergedReqSettings = (0, _deepmerge2.default)({
         method: def.method,
-        responseType: def.responseType ? def.responseType : 'json',
-        headers: { 'Content-Type': def.contentType ? def.contentType : 'application/json' }
+        responseType: def.responseType ? def.responseType : 'json'
       }, mergedReqSettings);
       return mergedReqSettings;
     }

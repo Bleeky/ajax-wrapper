@@ -45,11 +45,18 @@ class AjaxWrapper {
       }
     });
     let mergedReqSettings = deepmerge(middlewaresArgs, req);
+    if (def.contentType) {
+      mergedReqSettings = deepmerge(
+        {
+          headers: { 'Content-Type': def.contentType },
+        },
+        mergedReqSettings,
+      );
+    }
     mergedReqSettings = deepmerge(
       {
         method: def.method,
         responseType: def.responseType ? def.responseType : 'json',
-        headers: { 'Content-Type': def.contentType ? def.contentType : 'application/json' },
       },
       mergedReqSettings,
     );
