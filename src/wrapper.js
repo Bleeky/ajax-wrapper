@@ -45,14 +45,6 @@ class AjaxWrapper {
       }
     });
     let mergedReqSettings = deepmerge(middlewaresArgs, req);
-    if (def.contentType) {
-      mergedReqSettings = deepmerge(
-        {
-          headers: { 'Content-Type': def.contentType },
-        },
-        mergedReqSettings,
-      );
-    }
     mergedReqSettings = deepmerge(
       {
         method: def.method,
@@ -60,8 +52,11 @@ class AjaxWrapper {
       },
       mergedReqSettings,
     );
-    if (def.body) {
-      mergedReqSettings.body = def.body;
+    if (req.body) {
+      mergedReqSettings.body = req.body;
+    }
+    if (def.contentType) {
+      mergedReqSettings.headers['Content-Type'] = def.contentType;
     }
     console.error('req', req);
     console.error('merged req', mergedReqSettings);
