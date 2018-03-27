@@ -88,19 +88,14 @@ var AjaxWrapper = function () {
         }
       });
       var mergedReqSettings = (0, _deepmerge2.default)(middlewaresArgs, req);
-      console.error('merged req', mergedReqSettings);
       if (def.body) {
-        mergedReqSettings = (0, _deepmerge2.default)({
-          body: def.body
-        }, mergedReqSettings);
+        mergedReqSettings.body = def.body;
       }
-      console.error('merged req', mergedReqSettings);
       if (def.contentType) {
         mergedReqSettings = (0, _deepmerge2.default)({
           headers: { 'Content-Type': def.contentType }
         }, mergedReqSettings);
       }
-      console.error('merged req', mergedReqSettings);
       mergedReqSettings = (0, _deepmerge2.default)({
         method: def.method,
         responseType: def.responseType ? def.responseType : 'json'
