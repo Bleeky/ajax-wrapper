@@ -45,6 +45,16 @@ class AjaxWrapper {
       }
     });
     let mergedReqSettings = deepmerge(middlewaresArgs, req);
+    console.error('merged req', mergedReqSettings);
+    if (def.body) {
+      mergedReqSettings = deepmerge(
+        {
+          body: def.body,
+        },
+        mergedReqSettings,
+      );
+    }
+    console.error('merged req', mergedReqSettings);
     if (def.contentType) {
       mergedReqSettings = deepmerge(
         {
@@ -53,6 +63,7 @@ class AjaxWrapper {
         mergedReqSettings,
       );
     }
+    console.error('merged req', mergedReqSettings);
     mergedReqSettings = deepmerge(
       {
         method: def.method,
