@@ -98,8 +98,6 @@ var AjaxWrapper = function () {
       if (def.contentType) {
         mergedReqSettings.headers['Content-Type'] = def.contentType;
       }
-      console.error('req', req);
-      console.error('merged req', mergedReqSettings);
       return mergedReqSettings;
     }
   }, {
