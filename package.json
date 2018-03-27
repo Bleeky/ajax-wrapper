@@ -1,6 +1,6 @@
 {
   "name": "ajax-wrapper",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Simple ajax wrapper using fetch.",
   "main": "./dist/",
   "scripts": {
