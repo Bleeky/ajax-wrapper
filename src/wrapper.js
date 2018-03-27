@@ -45,9 +45,6 @@ class AjaxWrapper {
       }
     });
     let mergedReqSettings = deepmerge(middlewaresArgs, req);
-    if (def.body) {
-      mergedReqSettings.body = def.body;
-    }
     if (def.contentType) {
       mergedReqSettings = deepmerge(
         {
@@ -63,6 +60,9 @@ class AjaxWrapper {
       },
       mergedReqSettings,
     );
+    if (def.body) {
+      mergedReqSettings.body = def.body;
+    }
     console.error('req', req);
     console.error('merged req', mergedReqSettings);
     return mergedReqSettings;

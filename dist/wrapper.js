@@ -88,9 +88,6 @@ var AjaxWrapper = function () {
         }
       });
       var mergedReqSettings = (0, _deepmerge2.default)(middlewaresArgs, req);
-      if (def.body) {
-        mergedReqSettings.body = def.body;
-      }
       if (def.contentType) {
         mergedReqSettings = (0, _deepmerge2.default)({
           headers: { 'Content-Type': def.contentType }
@@ -100,6 +97,9 @@ var AjaxWrapper = function () {
         method: def.method,
         responseType: def.responseType ? def.responseType : 'json'
       }, mergedReqSettings);
+      if (def.body) {
+        mergedReqSettings.body = def.body;
+      }
       console.error('req', req);
       console.error('merged req', mergedReqSettings);
       return mergedReqSettings;
