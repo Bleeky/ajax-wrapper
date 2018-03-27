@@ -60,6 +60,7 @@ class AjaxWrapper {
       },
       mergedReqSettings,
     );
+    console.error('req', req);
     console.error('merged req', mergedReqSettings);
     return mergedReqSettings;
   }
@@ -87,7 +88,7 @@ class AjaxWrapper {
     Object.keys(this.apiDefs).forEach((key) => {
       routes = {
         ...routes,
-        [`${key}`]: (reqSettings = { params: {}, body: {}, query: {} }) =>
+        [`${key}`]: (reqSettings = { params: {}, body: null, query: {} }) =>
           fetch(
             this.buildUrl(this.apiDefs[key].url, reqSettings.params, reqSettings.query),
             this.defBuilder(this.apiDefs[key], reqSettings),

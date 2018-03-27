@@ -97,6 +97,7 @@ var AjaxWrapper = function () {
         method: def.method,
         responseType: def.responseType ? def.responseType : 'json'
       }, mergedReqSettings);
+      console.error('req', req);
       console.error('merged req', mergedReqSettings);
       return mergedReqSettings;
     }
@@ -138,7 +139,7 @@ var AjaxWrapper = function () {
       var routes = {};
       Object.keys(this.apiDefs).forEach(function (key) {
         routes = (0, _extends4.default)({}, routes, (0, _defineProperty3.default)({}, '' + key, function undefined() {
-          var reqSettings = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { params: {}, body: {}, query: {} };
+          var reqSettings = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : { params: {}, body: null, query: {} };
           return fetch(_this3.buildUrl(_this3.apiDefs[key].url, reqSettings.params, reqSettings.query), _this3.defBuilder(_this3.apiDefs[key], reqSettings)).then(function () {
             var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(response) {
               var data;
