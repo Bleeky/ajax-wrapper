@@ -60,6 +60,7 @@ class AjaxWrapper {
       },
       mergedReqSettings,
     );
+    console.error('merged req', mergedReqSettings);
     return mergedReqSettings;
   }
 

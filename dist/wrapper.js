@@ -97,6 +97,7 @@ var AjaxWrapper = function () {
         method: def.method,
         responseType: def.responseType ? def.responseType : 'json'
       }, mergedReqSettings);
+      console.error('merged req', mergedReqSettings);
       return mergedReqSettings;
     }
   }, {
