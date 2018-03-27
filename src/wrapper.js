@@ -86,7 +86,7 @@ class AjaxWrapper {
     Object.keys(this.apiDefs).forEach((key) => {
       routes = {
         ...routes,
-        [`${key}`]: (reqSettings = { params: {}, body: null, query: {} }) =>
+        [`${key}`]: (reqSettings = { params: {}, body: {}, query: {} }) =>
           fetch(
             this.buildUrl(this.apiDefs[key].url, reqSettings.params, reqSettings.query),
             this.defBuilder(this.apiDefs[key], reqSettings),
