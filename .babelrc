@@ -15,14 +15,8 @@
     ],
   ],
   "presets": [
-    "env", [
-      "latest",
-      {
-        "es2015": {
-          "modules": false,
-        },
-      },
-    ],
+    "env",
+    "react",
     "stage-0",
   ],
 }
