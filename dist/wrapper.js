@@ -16,13 +16,13 @@ var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
-
-var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
-
 var _extends3 = require('babel-runtime/helpers/extends');
 
 var _extends4 = _interopRequireDefault(_extends3);
+
+var _toConsumableArray2 = require('babel-runtime/helpers/toConsumableArray');
+
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
 var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
@@ -84,7 +84,7 @@ var AjaxWrapper = function () {
         if (!def.ignoreMiddlewares || !def.ignoreMiddlewares.find(function (ignore) {
           return ignore === middleware.name;
         })) {
-          middlewaresArgs = (0, _extends4.default)({}, middlewaresArgs, middleware.handler());
+          middlewaresArgs = (0, _deepmerge2.default)(middlewaresArgs, middleware.handler());
         }
       });
       var mergedReqSettings = (0, _deepmerge2.default)(middlewaresArgs, req);
